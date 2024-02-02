@@ -42,6 +42,15 @@ async def pixi(request: Request):
     return templates.TemplateResponse("pixi.html", context)
 
 
+@app.get("/counter", response_class=HTMLResponse)
+async def counter(request: Request):
+    context = {
+        "request": request,
+        "category": "counter"
+    }
+    return templates.TemplateResponse("counter.html", context)
+
+
 @app.get("/items/{item_id}", response_class=HTMLResponse)
 async def read_item(request: Request, item_id: str):
     context = {
