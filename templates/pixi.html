@@ -14,8 +14,8 @@
     const SAMPLE_PNG = '/static/sample.png';
 
     // Label showing scene graph hierarchy
-    const label = new PIXI.Text('Scene Graph:\n\napp.stage\n  ┗ A\n     ┗ B\n     ┗ C\n  ┗ D', {fill: '#ffffff'});
-    label.position = {x: 300, y: 100};
+    const label = new PIXI.Text('Welcome to:', {fill: '#ffffff'});
+    label.position = {x: 10, y: 10};
     app.stage.addChild(label);
 
     // Helper function to create a block of color with a letter
@@ -41,11 +41,28 @@
         return container;
     }
 
-    // Define 4 letters
-    let a = addLetter('A', app.stage, 0xff0000, {x: 100, y: 100});
-    let b = addLetter('B', a, 0x00ff00, {x: 20, y: 20});
-    let c = addLetter('C', a, 0x0000ff, {x: 20, y: 40});
-    let d = addLetter('D', app.stage, 0xff8800, {x: 140, y: 100});
+    function getColor(idx) {
+        return colors[Object.keys(colors)[idx]]
+    }
+
+    const colors = {
+        "Eerie black": "#151b12",
+        "Ebony": "#5d5f4d",
+        "Black olive": "#1d271a",
+        "Black bean": "#36190e",
+        "Dark green": "#182513",
+        "Black olive 2": "#404138",
+    }
+
+    const print_string = "Wouter";
+    let parent = app.stage;
+    let pos = {x: 10, y: 100};
+    for (let letter in print_string) {
+        console.log(`Print ${print_string[letter]} on x(${pos.x})`)
+        parent = addLetter(print_string[letter], parent, getColor(letter), {x: pos.x, y: pos.y})
+        pos.x = 100
+        pos.y = 0
+    }
 
     // Display them over time, in order
     let elapsed = 0.0;
