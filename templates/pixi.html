@@ -10,21 +10,42 @@
 <script>
     let app = new PIXI.Application({width: 640, height: 360});
     globalThis.__PIXI_APP__ = app;
-
     document.body.appendChild(app.view);
-    // Magically load the PNG asynchronously
-    let sprite = PIXI.Sprite.from('/static/sample.png');
-    app.stage.addChild(sprite);
-    // Add a variable to count up the seconds our demo has been running
+    const SAMPLE_PNG = '/static/sample.png';
+
+    // Add a container to center our sprite stack on the page
+    const container = new PIXI.Container();
+    container.x = app.screen.width / 2;
+    container.y = app.screen.height / 2;
+    app.stage.addChild(container);
+
+    // Create the 3 sprites, each a child of the last
+    const sprites = [];
+    let parent = container;
+    for (let i = 0; i < 3; i++) {
+        let sprite = PIXI.Sprite.from(SAMPLE_PNG);
+        sprite.anchor.set(0.5);
+        parent.addChild(sprite);
+        sprites.push(sprite);
+        parent = sprite;
+    }
+
+    // Set all sprite's properties to the same value, animated over time
     let elapsed = 0.0;
-    // Tell our application's ticker to run a new callback every frame, passing
-    // in the amount of time that has passed since the last tick
     app.ticker.add((delta) => {
-        // Add the time to our total elapsed time
-        elapsed += delta;
-        // Update the sprite's X position based on the cosine of our elapsed time.  We divide
-        // by 20 to slow the animation down a bit...
-        sprite.x = 100.0 + Math.cos(elapsed / 20.0) * 100.0;
+        elapsed += delta / 60;
+        const amount = Math.sin(elapsed);
+        const scale = 1.0 + 0.25 * amount;
+        const alpha = 0.75 + 0.25 * amount;
+        const angle = 40 * amount;
+        const x = 75 * amount;
+        for (let i = 0; i < sprites.length; i++) {
+            const sprite = sprites[i];
+            sprite.scale.set(scale);
+            sprite.alpha = alpha;
+            sprite.angle = angle;
+            sprite.x = x;
+        }
     });
 </script>
 {% endblock %}
