@@ -9,6 +9,8 @@
 <h1>Pixi</h1>
 <script>
     let app = new PIXI.Application({width: 640, height: 360});
+    globalThis.__PIXI_APP__ = app;
+
     document.body.appendChild(app.view);
     // Magically load the PNG asynchronously
     let sprite = PIXI.Sprite.from('/static/sample.png');
@@ -21,8 +23,8 @@
         // Add the time to our total elapsed time
         elapsed += delta;
         // Update the sprite's X position based on the cosine of our elapsed time.  We divide
-        // by 50 to slow the animation down a bit...
-        sprite.x = 100.0 + Math.cos(elapsed / 50.0) * 100.0;
+        // by 20 to slow the animation down a bit...
+        sprite.x = 100.0 + Math.cos(elapsed / 20.0) * 100.0;
     });
 </script>
 {% endblock %}
