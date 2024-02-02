@@ -13,13 +13,30 @@
     {% block html_head %}{% endblock %}
 </head>
 <body>
+<div class="ui fixed inverted menu">
+    <div class="ui container">
+        <a href="{{ url_for('index') }}" class="header item">
+            <img class="logo" src="{{ url_for('static', path='/sample.png') }}">
+            T.V.K.i.
+        </a>
+        <a href="{{ url_for('index') }}" class="item">Home</a>
+        <a href="{{ url_for('pixi') }}" class="item">Pixi fun</a>
+    </div>
+</div>
+
+<div class="ui main text container">
     <div id="content">
         {% block content %}{% endblock %}
     </div>
+</div>
 
-    <div id="footer">
-        {% block footer %}
-        &copy; Copyright 2024 by <a href="{{ url_for('read_item', item_id='tvki') }}">tvki</a>.
-        {% endblock %}
+<div class="ui inverted vertical footer segment">
+    <div class="ui center aligned container">
+        <div id="footer">
+            {% block footer %}
+            &copy; Copyright 2024 by <a href="{{ url_for('read_item', item_id='tvki') }}">tvki</a>.
+            {% endblock %}
+        </div>
     </div>
+</div>
 </body>
