@@ -1,3 +1,6 @@
-:root {
-  --accent: #336699;
+.main.text.container {
+    margin-top: 54px;
+}
+.app_root {
+    min-height: 40rem;
 }

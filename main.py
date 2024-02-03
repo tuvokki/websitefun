@@ -33,13 +33,13 @@ async def index(request: Request):
     return templates.TemplateResponse("index.html", context)
 
 
-@app.get("/pixi", response_class=HTMLResponse)
-async def pixi(request: Request):
+@app.get("/wordfun", response_class=HTMLResponse)
+async def wordfun(request: Request):
     context = {
         "request": request,
-        "category": "pixi"
+        "category": "wordfun"
     }
-    return templates.TemplateResponse("pixi.html", context)
+    return templates.TemplateResponse("wordfun.html", context)
 
 
 @app.get("/counter", response_class=HTMLResponse)
@@ -59,3 +59,22 @@ async def read_item(request: Request, item_id: str):
         "category": "item"
     }
     return templates.TemplateResponse("item.html", context)
+
+
+@app.get("/digit", response_class=HTMLResponse)
+@app.get("/digit/{digit}", response_class=HTMLResponse)
+async def digit(request: Request, digit: str | None = 0):
+    prev_dgt = int(digit) - 1
+    if prev_dgt < 0:
+        prev_dgt = 9
+    next_dgt = int(digit) + 1
+    if next_dgt > 9:
+        next_dgt = 0
+
+    context = {
+        "request": request,
+        "digit": digit,
+        "prev": prev_dgt,
+        "next": next_dgt,
+    }
+    return templates.TemplateResponse("digit.html", context)

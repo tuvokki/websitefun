@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Digit {% endblock %}
+
+{% block content %}
+<script>
+    const show_digit = '{{ digit }}';
+</script>
+<script type="module" src="{{ url_for('static', path='/digit.js') }}"></script>
+<h1>Hi {{digit}}</h1>
+<div class="ui top attached segment app_root"></div>
+<div class="ui bottom attached segment app_controls">
+    <a href="{{ url_for('digit', digit=prev) }}"
+       class="ui left floated icon button">
+        <i class="left arrow icon"></i>
+    </a>
+    <a href="{{ url_for('digit', digit=next) }}"
+       class="ui right floated icon button">
+        <i class="right arrow icon"></i>
+    </a>
+</div>
+{% endblock %}

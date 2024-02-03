@@ -1,10 +1,12 @@
 import * as PIXI from './pixi.mjs';
 
+const AppRoot = document.body.getElementsByClassName("app_root")[0]
+
 const app = new PIXI.Application(
-    { autoStart: false, resizeTo: window }
+    { autoStart: false, resizeTo: AppRoot }
 );
 
-document.body.appendChild(app.view);
+AppRoot.appendChild(app.view);
 globalThis.__PIXI_APP__ = app;
 
 PIXI.Assets.load('https://pixijs.com/assets/spritesheet/0123456789.json').then((spritesheet) =>

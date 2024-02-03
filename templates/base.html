@@ -20,8 +20,24 @@
             T.V.K.i.
         </a>
         <a href="{{ url_for('index') }}" class="item">Home</a>
-        <a href="{{ url_for('pixi') }}" class="item">Pixi fun</a>
+        <a href="{{ url_for('wordfun') }}" class="item">Wordfun</a>
         <a href="{{ url_for('counter') }}" class="item">Counter</a>
+        <div class="ui simple dropdown item">
+            <a href="{{ url_for('digit') }}">Digits</a> <i class="dropdown icon"></i>
+            <div class="menu">
+                <a class="item" href="{{ url_for('digit', digit=0) }}">Show 0</a>
+                <a class="item" href="{{ url_for('digit', digit=1) }}">Show 1</a>
+                <a class="item" href="{{ url_for('digit', digit=2) }}">Show 2</a>
+                <a class="item" href="{{ url_for('digit', digit=3) }}">Show 3</a>
+                <a class="item" href="{{ url_for('digit', digit=4) }}">Show 4</a>
+                <a class="item" href="{{ url_for('digit', digit=5) }}">Show 5</a>
+                <a class="item" href="{{ url_for('digit', digit=6) }}">Show 6</a>
+                <a class="item" href="{{ url_for('digit', digit=7) }}">Show 7</a>
+                <a class="item" href="{{ url_for('digit', digit=8) }}">Show 8</a>
+                <a class="item" href="{{ url_for('digit', digit=9) }}">Show 9</a>
+            </div>
+        </div>
+
     </div>
 </div>
 

@@ -2,10 +2,10 @@
 {% block title %}Counter{% endblock %}
 
 {% block content %}
+<script type="module" src="{{ url_for('static', path='/counter.js') }}"></script>
 <div class="ui grid">
     <div class="two wide column"></div>
-    <div class="twelve wide column">
-        <script type="module" src="{{ url_for('static', path='/counter.js') }}"></script>
+    <div class="twelve wide app_root column">
     </div>
     <div class="two wide column"></div>
 </div>

@@ -1,14 +1,16 @@
 import * as PIXI from './pixi.mjs';
 
+const AppRoot = document.body.getElementsByClassName("app_root")[0]
+
 let app = new PIXI.Application(
-    {background: '#ffffff', width: 640, height: 360}
+    {background: '#ffffff', resizeTo: AppRoot}
 );
 // const app = new PIXI.Application({background: '#1099bb', resizeTo: window});
 globalThis.__PIXI_APP__ = app;
-document.body.appendChild(app.view);
+AppRoot.appendChild(app.view);
 
 // Label showing scene graph hierarchy
-const label = new PIXI.Text('Welcome to:', {fill: '#000000'});
+const label = new PIXI.Text('What\'s my name?', {fill: '#000000'});
 label.position = {x: 10, y: 10};
 app.stage.addChild(label);
 
